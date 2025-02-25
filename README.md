@@ -24,8 +24,8 @@ El sistema analiza las siguientes características para determinar si un usuario
 ## Requisitos
 
 - Python 3.11+
+- PostgreSQL
 - Django 5.0+
-- NumPy 1.24+
 
 ## Instalación
 
@@ -35,22 +35,51 @@ git clone [URL_DEL_REPOSITORIO]
 cd backpropagation
 ```
 
-2. Instalar dependencias:
+2. Instalar dependencias requeridas:
 ```bash
+pip install numpy
+pip install Faker
+pip install psycopg2
 pip install -r requirements.txt
 ```
 
-3. Aplicar migraciones:
+3. Configurar la base de datos PostgreSQL:
+   - Crear una base de datos llamada 'bot_detection'
+   - Configurar las credenciales en settings.py:
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bot_detection',
+        'USER': 'tu_usuario',
+        'PASSWORD': 'tu_contraseña',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+```
+
+4. Aplicar migraciones:
 ```bash
 python manage.py migrate
 ```
 
-4. Cargar datos de ejemplo:
+5. Generar datos de entrenamiento:
+```bash
+python manage.py generarJsonDB
+```
+
+6. Entrenar el algoritmo:
+```bash
+python manage.py train_mlp
+```
+
+7. Cargar datos en la base de datos:
 ```bash
 python manage.py cargar_dataDB
 ```
 
-5. Iniciar el servidor:
+8. Iniciar el servidor:
 ```bash
 python manage.py runserver
 ```

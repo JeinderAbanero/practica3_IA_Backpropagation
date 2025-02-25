@@ -2,6 +2,7 @@ import json
 import os
 import sys
 import django
+import random
 # Definir la ruta base del proyecto
 # Definir la ruta base del proyecto
 
@@ -34,6 +35,9 @@ class Command(BaseCommand):
         # Leer el archivo JSON
         with open(ruta_json, "r", encoding="utf-8") as f:
             datos = json.load(f)
+
+        if isinstance(datos, list):
+            random.shuffle(datos)  # Mezclar los datos de forma aleatoria
 
         # Recorrer los usuarios en el JSON
         for dato_usuario in datos:

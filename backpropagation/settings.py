@@ -76,9 +76,9 @@ WSGI_APPLICATION = 'backpropagation.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'backpropagation',
+        'NAME': 'backpropagation2',
         'USER': 'postgres',
-        'PASSWORD': '1508',
+        'PASSWORD': 'pasword',
         'HOST': 'localhost',
         'PORT': '5432',
     }}

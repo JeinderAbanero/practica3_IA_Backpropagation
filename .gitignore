@@ -56,3 +56,8 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
+
+data.json
+usuarios.json
+mlp_weights.json

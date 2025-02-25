@@ -2,8 +2,13 @@ from django.core.management.base import BaseCommand
 from faker import Faker
 import json
 import random
+import os
 from datetime import datetime, timedelta
 
+# Obtener la ruta del directorio actual (donde está cargar_usuarios.py)
+current_dir = os.path.dirname(__file__)
+ruta_train = os.path.join(current_dir, "data.json")
+ruta_usuarios = os.path.join(current_dir, "usuarios.json")
 fake = Faker()
 
 def generar_usuarios(cantidad, etiqueta):
@@ -77,7 +82,6 @@ def generar_comentarios(cantidad):
         }
         comentarios.append(comentario)
     return comentarios
-
 def generar_data_json(usuarios):
     data = []
     for usuario in usuarios:
@@ -94,22 +98,28 @@ def generar_data_json(usuarios):
         data.append({"features": features, "label": label})
     return data
 
+
+
 class Command(BaseCommand):
     help = 'Genera datos de usuarios para entrenamiento y prueba'
 
     def handle(self, *args, **kwargs):
         # Generar datos balanceados (50% bots, 50% normales)
-        usuarios_bot = generar_usuarios(5, "Spawn Bot")
-        usuarios_normal = generar_usuarios(5, "normal")
+        usuarios_bot = generar_usuarios(20, "Spawn Bot")
+        usuarios_normal = generar_usuarios(20, "normal")
         usuarios = usuarios_bot + usuarios_normal
         
         # Guardar usuarios en JSON
-        with open("backpropagation/management/commands/usuarios.json", "w", encoding="utf-8") as f:
+        with open(ruta_usuarios, "w", encoding="utf-8") as f:
             json.dump(usuarios, f, indent=4, ensure_ascii=False)
             
+        usuarios_bot_train = generar_usuarios(30, "Spawn Bot")
+        usuarios_normal_train = generar_usuarios(30, "normal")
+        usuarios_train = usuarios_bot_train + usuarios_normal_train
+
         # Generar y guardar datos de entrenamiento
-        data = generar_data_json(usuarios)
-        with open("backpropagation/management/commands/data.json", "w", encoding="utf-8") as f:
+        data = generar_data_json(usuarios_train)
+        with open(ruta_train, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4)
-            
+
         self.stdout.write("JSON generado exitosamente: usuarios.json y data.json")
