@@ -12,7 +12,7 @@ ruta_archivo = os.path.join(current_dir, "usuarios.json")
 # Configurar Django
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backpropagation2.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backpropagation.settings")
 django.setup()
 
 
@@ -72,7 +72,7 @@ class Command(BaseCommand):
                 for dato_comentario in dato_publicacion["comentarios"]:
                     Comentario.objects.create(
                         publicacion=publicacion,
-                        username=dato_comentario["usuario"],
+                        usuario=dato_comentario["usuario"],
                         texto_comentario=dato_comentario["texto_comentario"],
                         fecha_comentario=datetime.strptime(dato_comentario["fecha_comentario"], "%Y-%m-%d")
                     )
