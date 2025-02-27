@@ -74,14 +74,15 @@ WSGI_APPLICATION = 'backpropagation.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'backpropagation2',
-        'USER': 'postgres',
-        'PASSWORD': 'pasword',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }}
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "backpropagation",
+        "USER": "backpropagation_user",
+        "PASSWORD": "MOtdpfgMDzypEe2HJujWmXmgq9ueuoB7",
+        "HOST": "dpg-cuvrgfin91rc7388palg-a.oregon-postgres.render.com",
+        "PORT": "5432",
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

@@ -72,7 +72,7 @@ class MLP:
             # Calcular pérdida
             loss = np.mean(np.square(y - output))
             
-            if epoch % 100 == 0 and verbose:
+            if epoch % 1000 == 0 and verbose:
                 print(f'Epoch {epoch}, Loss: {loss:.6f}')
             
             # Early stopping
