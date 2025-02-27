@@ -31,7 +31,7 @@ El sistema analiza las siguientes características para determinar si un usuario
 
 1. Clonar el repositorio:
 ```bash
-git clone [URL_DEL_REPOSITORIO]
+git clone https://github.com/JeinderAbanero/practica3_IA_Backpropagation
 cd backpropagation
 ```
 
@@ -43,9 +43,9 @@ pip install psycopg2
 pip install -r requirements.txt
 ```
 
-3. Configurar la base de datos PostgreSQL:
-   - Crear una base de datos llamada 'bot_detection'
-   - Configurar las credenciales en settings.py:
+3. Configurar la base de datos PostgreSQL si deseas usar una DB local de lo contrario dejar por defecto: 
+- Crear una base de datos llamada 'bot_detection' 
+- Configurar las credenciales en settings.py:
 ```python
 DATABASES = {
     'default': {
@@ -61,6 +61,7 @@ DATABASES = {
 
 4. Aplicar migraciones:
 ```bash
+python manage.py makemigrations backpropagation
 python manage.py migrate
 ```
 
